@@ -1,0 +1,45 @@
+
+
+import javax.swing.JButton;
+
+/**
+ * @author klauder
+ */
+public class Arduino {
+  private ControlePorta arduino;
+  String o1 = "LOn1";
+  String f1 = "LOf1";
+  String o2 = "LOn2";
+  String f2 = "LOf2";
+  
+  /**
+   * Construtor da classe Arduino
+   */
+  public Arduino(){
+      arduino = new ControlePorta("COM6",9600);//Windows - porta e taxa de transmissão
+      //arduino = new ControlePorta("/dev/ttyUSB0",9600);//Linux - porta e taxa de transmissão
+  }    
+
+  public void comunicacaoArduino(JButton button) {
+      if (o1.equals(button.getActionCommand())){
+          arduino.enviaDados(1);
+          System.out.println(button.getText());
+      }else if (f1.equals(button.getActionCommand())){
+          arduino.enviaDados(2);
+          System.out.println(button.getText());
+      } else if (o2.equals(button.getActionCommand())){
+          arduino.enviaDados(3);
+          System.out.println(button.getText());
+      } else if (f2.equals(button.getActionCommand())){
+          arduino.enviaDados(4);
+          System.out.println(button.getText());
+      }else{
+      arduino.close();
+      System.out.println(button.getText());//Imprime o nome do botão pressionado  
+      }
+  }
+  
+  
+   
+  
+}

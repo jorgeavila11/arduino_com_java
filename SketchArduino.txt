@@ -1,0 +1,32 @@
+int ledPin[] = {2,3,4}; //atribui o pino 2 a variável ledPin 
+
+
+int dado; //variável que receberá os dados da porta serial
+
+void setup(){
+  Serial.begin(9600);//frequência da porta serial
+  for(int i = 0;i<3;i++){
+    pinMode(ledPin[i],OUTPUT); //define o pino o ledPin como saída
+  }
+}
+
+void loop(){
+  if(Serial.available() > 0){ //verifica se existe comunicação com a porta serial
+      dado = Serial.read();//lê os dados da porta serial
+     
+      switch(dado){
+        case 1:
+           digitalWrite(ledPin[0],HIGH); //liga o pino ledPin           
+        break;
+        case 2:
+           digitalWrite(ledPin[0],LOW); //desliga o pino ledPin
+         break;
+         case 3:
+         digitalWrite(ledPin[1],HIGH); //desliga o pino ledPin
+         break;
+         case 4:
+         digitalWrite(ledPin[1],LOW); //desliga o pino ledPin
+         break;
+    }
+  }
+}
